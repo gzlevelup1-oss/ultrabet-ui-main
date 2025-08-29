@@ -1,0 +1,14 @@
+.groupTitle {
+    color: var(--egyptian-blue);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+    margin-top: 80px
+}
+
+.closedMarketContent {
+    color: var(--egyptian-blue)
+}

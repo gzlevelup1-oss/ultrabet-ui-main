@@ -1,0 +1,15 @@
+.button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: var(--salmon);
+    color: white;
+}

@@ -1,0 +1,162 @@
+.noEventsNote {
+    text-align: center;
+}
+
+.noEventsNote > a {
+    color: #be8ec4;
+    font-weight: bold;
+}
+
+.content {
+    margin-bottom: 1em;
+}
+
+
+.events {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 1em;
+    gap: var(--spacing-medium);
+    margin-bottom: 1em;
+
+    justify-content: center;
+    @media screen and (min-width: 80em) {
+        justify-content: flex-start;
+    }
+}
+
+@keyframes flash {
+    from {
+        background-color: hotpink;
+    }
+    to {
+        background-color: initial;
+    }
+}
+
+.eventWrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: var(--radius-large);
+    color: black;
+    width: 430px;
+    height: 235px;
+    background-color: var(--off-white);
+}
+
+.eventWrapper.flash {
+    animation: flash 2s;
+}
+
+.eventHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*font-weight: 600;*/
+    color: var(--black);
+    background-color: var(--peach-yellow);
+    margin-bottom: 1em;
+    padding: .5em 1em;
+    border-top-left-radius: var(--radius-large);
+    border-top-right-radius: var(--radius-large);
+}
+
+.headerItem {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    text-align: center;
+    max-width: 200px;
+}
+
+.headerSubItem {
+    padding: 0.3em;
+}
+
+.headerSubItem2 {
+    padding: 0.3em;
+    background-color: var(--off-white);
+}
+
+.oddsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 2em;
+}
+
+.market {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+}
+
+.eventName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2em;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--black);
+    text-align: center;
+    min-height: 1.5rem;
+    max-width: 400px;
+    word-wrap: break-word;
+}
+
+.oddsBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 2px solid var(--pink-lavender);
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+.oddsValue {
+    margin-top: 8px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.optionName {
+    font-size: 1rem;
+    color: #222;
+    text-align: center;
+    min-height: 1.5rem;
+
+    .point {
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+}
+
+.oddsHistory {
+    font-size: 10px;
+    color: #666;
+    height: 10px;
+    padding-bottom: 2px;
+}
+
+.addSlipOptionButton {
+    cursor: pointer;
+    padding: 0.5em 2em 0.5em 2em;
+    background-color: var(--pink-lavender);
+    color: black;
+    border: none;
+
+    @media screen and (max-width: 60em) {
+        padding: 0.5em 1.4em;
+    }
+}
+
+.addSlipOptionButton:hover {
+    background-color: rgb(255, 105, 180, 0.7);
+    box-shadow: -2px 2px 10px rgba(100, 100, 100, 0.3);
+}

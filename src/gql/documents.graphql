@@ -1,0 +1,181 @@
+fragment Market on Market {
+    id
+    name
+    source
+    lastUpdated
+    isLive
+    options {
+        id
+        name
+        odds
+        point
+        description
+    }
+}
+
+fragment Event on Event {
+    id
+    externalId
+    name
+    startTime
+    homeTeamName
+    awayTeamName
+    result
+    sport {
+        id
+        key
+        title
+        description
+        active
+        group
+        hasOutrights
+    }
+    isLive
+    completed
+    markets {
+        ...Market
+    }
+    scoreUpdates {
+        id
+        name
+        score
+    }
+}
+
+fragment EventWithoutSport on Event {
+    id
+    externalId
+    name
+    startTime
+    homeTeamName
+    awayTeamName
+    result
+    isLive
+    completed
+    markets {
+        ...Market
+    }
+    scoreUpdates {
+        id
+        name
+        score
+    }
+}
+
+fragment Sport on Sport {
+    id
+    title
+    active
+    group
+    description
+    hasOutrights
+}
+
+query me {
+    me {
+        id
+        externalId
+        username
+        email
+        wallet {
+            id
+            balance
+        }
+    }
+}
+
+query ListLiveEvents {
+    listLiveEvents {
+        ...Event
+    }
+}
+
+query ListEventsBySport($group: String!) {
+    eventsBySportGroup(group: $group) {
+        ...Event
+    }
+}
+
+
+query ListBets {
+    listBets {
+        id
+        betOptions {
+            id
+            status
+            marketOption {
+                id
+                name
+                odds
+                point
+                description
+                market {
+                    id
+                    name
+                    event {
+                        ...Event
+                    }
+                }
+            }
+        }
+        stake
+        potentialWinnings
+        createdAt
+        status
+    }
+}
+
+query listSports {
+    listSports(group: "all") {
+        ...Sport
+    }
+}
+
+fragment SportWithEvents on Sport {
+    ...Sport
+    events {
+        ...EventWithoutSport
+    }
+}
+
+query listSportsWithEvents($group: String!) {
+    listSports(group: $group) {
+        ...SportWithEvents
+    }
+}
+
+subscription marketOptionUpdates {
+    liveMarketOptionsUpdated {
+        id
+        name
+        odds
+        lastUpdated
+    }
+}
+
+subscription scoreUpdates {
+    eventScoresUpdated {
+        ...Event
+    }
+}
+
+subscription eventStatusUpdates {
+    eventStatusUpdated {
+        ...Event
+    }
+}
+
+mutation placeBet($betType: BetType!, $marketOptions: [ID!]!, $stake: Float!) {
+    placeBet(betType: $betType, marketOptions: $marketOptions, stake: $stake) {
+        id
+        status
+    }
+}
+
+mutation placeSingleBets($options: [BetOptionInput!]!) {
+    placeSingleBets(options: $options) {
+        id
+        status
+    }
+}
+
