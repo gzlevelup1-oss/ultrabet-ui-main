@@ -26,9 +26,7 @@ export function NavLink({
   return (
     <li className="pure-menu-item">
       <Link
-        className={classnames('pure-menu-link', className, isActive && activeClassName, {
-          [`${styles.active}`]: isActive,
-        })}
+        className={classnames(styles.navLink, className, isActive && styles.navLinkActive)}
         href={slug}
       >
         {label}
@@ -56,32 +54,18 @@ export function MarketNav({ prefix }: { prefix: string }) {
 
 export function PageNav() {
   const selectionResolver: SelectionResolver = (slug, path) => {
-    console.log('slug: ', slug.replace('/', ''))
-    console.log('path: ', path.replace('/', ''))
-
     return slug.replace('/', '') == path.replace('/', '')
   }
 
   return (
-    <ul className="pure-menu-list">
-      <li className="pure-menu-item">
-        <NavLink
-          selectionResolver={selectionResolver}
-          className="pure-menu-link"
-          activeClassName="pure-menu-selected"
-          slug={'/'}
-          label="Events"
-        />
-      </li>
-      <li className="pure-menu-item">
-        <NavLink
-          selectionResolver={selectionResolver}
-          className="pure-menu-link"
-          activeClassName="pure-menu-selected"
-          slug={'/bets'}
-          label="My Bets"
-        />
-      </li>
+    <ul className="pure-menu-list" style={{ display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'center', margin: 0, padding: 0 }}>
+      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/'} label="Home" /></li>
+      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/league'} label="League" /></li>
+      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/aviator'} label="Aviator" /></li>
+      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/virtuals'} label="Virtuals" /></li>
+      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/games'} label="Games" /></li>
+      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/jackpot'} label="Jackpot" /></li>
+      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/promotions'} label="Promotions" /></li>
     </ul>
   )
 }

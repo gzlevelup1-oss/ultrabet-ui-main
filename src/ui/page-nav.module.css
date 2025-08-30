@@ -1,33 +1,24 @@
-.marketNav {
-    position: fixed;
-    top: 34px;
-    background-color: var(--off-white-transparent); ;
-    margin-left: -190px;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem 0;
-    /*border-bottom: 5px solid var(--light-blue);*/
-    gap: 1em;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--egyptian-blue);
-    /*// sticky at top of page*/
 
-    @media screen and (max-width: 60em) {
-        margin-left: -30px;
-        width: 100%;
-    }
+.navLink {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.05em;
+    color: #fff;
+    letter-spacing: 0.04em;
+    padding: 0.5em 1.2em;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.18s, color 0.18s;
+    background: transparent;
+    display: inline-block;
 }
-
-.marketNav a {
-    color: var(--egyptian-blue);
+.navLink:hover, .navLink:focus {
+    background: #ffc10722;
+    color: #ffc107;
+    text-decoration: none;
 }
-
-.active {
-    font-weight: 600;
-    font-size: 1.1em;
-    background-color: var(--off-white);
-    color: var(--black);
+.navLinkActive {
+    color: #ffc107;
+    background: #fff2cc22;
+    font-weight: 800;
 }

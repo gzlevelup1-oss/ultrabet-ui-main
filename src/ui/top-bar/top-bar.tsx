@@ -5,109 +5,59 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './top-bar.module.css'
 import Image from 'next/image'
 import { User } from '@/gql/types.generated'
-import { PageNav } from '@/ui/page-nav'
+import { PageNav } from '../page-nav'
 
 
 export type Props = {
   bettingUser: User | null
 }
 
-function TopBar({ bettingUser }: Props) {
-
-
-  // const { user, isLoading } = useUser()
-  const [userMenuVisible, setUserMenuVisible] = useState(false)
-  const [toggleHorizontalTimeout, setToggleHorizontalTimeout] = useState<NodeJS.Timeout | null>(
-    null
-  )
-  const menuRef = useRef<HTMLDivElement>(null) // Specify the type for the ref
-  const toggleRef = useRef<HTMLAnchorElement>(null) // Specify the type for the ref
-
-  const handleUserMenuClick = () => {
-    setUserMenuVisible(!userMenuVisible)
-  }
-
-  const toggleMenu = useCallback(() => {
-    const toggleHorizontal = () => {
-      if (!menuRef.current) return
-      menuRef.current.classList.remove('closing')
-      Array.from(menuRef.current.querySelectorAll('.custom-can-transform')).forEach((el) => {
-        el.classList.toggle('pure-menu-horizontal')
-      })
-    }
-    console.log('toggleMenu()')
-    if (!menuRef.current || !toggleRef.current) return
-    if (menuRef.current.classList.contains(styles.open)) {
-      menuRef.current.classList.add('closing')
-      setToggleHorizontalTimeout(setTimeout(toggleHorizontal, 500))
-    } else {
-      if (menuRef.current.classList.contains('closing')) {
-        if (toggleHorizontalTimeout) clearTimeout(toggleHorizontalTimeout)
-      } else {
-        toggleHorizontal()
-      }
-    }
-    menuRef.current.classList.toggle(styles.open)
-    toggleRef.current.classList.toggle(styles.x)
-  }, [toggleHorizontalTimeout])
-
-  useEffect(() => {
-    const closeMenu = () => {
-      if (menuRef.current && menuRef.current.classList.contains(styles.open)) {
-        toggleMenu()
-      }
-    }
-    const windowChangeEvent = 'onorientationchange' in window ? 'orientationchange' : 'resize'
-    window.addEventListener(windowChangeEvent, closeMenu)
-    return () => {
-      window.removeEventListener(windowChangeEvent, closeMenu)
-    }
-  }, [toggleHorizontalTimeout, toggleMenu])
-
+export default function TopBar({ bettingUser }: Props) {
+  const [login, setLogin] = useState({ username: '', password: '' });
   return (
-    <nav ref={menuRef} className={styles.container} id="topmenu" style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      background: '#1e7e34',
-      color: '#fff',
-      height: '64px',
-      padding: '0 2rem',
-      boxShadow: '0 2px 8px rgba(30,126,52,0.08)',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 100
-    }}>
-      {/* Logo on the left */}
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-        <Image src="/ultrabet-logo.svg" alt="Ultrabet Logo" width={40} height={40} style={{ display: 'block' }} />
-        <span style={{ fontWeight: 700, fontSize: 24, color: '#ffc107', letterSpacing: 1 }}>Ultrabet</span>
-      </Link>
-      {/* Center navigation */}
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-        <PageNav />
+    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, width: '100%' }}>
+      {/* Top row: login/register */}
+      <div style={{ background: '#184e25', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: 38, padding: '0 2rem', borderBottom: '1px solid #1e7e34' }}>
+        <form style={{ display: 'flex', alignItems: 'center', gap: 8 }} onSubmit={e => e.preventDefault()}>
+          <input
+
+            placeholder="Username"
+            value={login.username}
+            onChange={e => setLogin(l => ({ ...l, username: e.target.value }))}
+            style={{ padding: '0.3em 0.8em', borderRadius: 6, border: '1px solid #ccc', fontSize: 14, outline: 'none', marginRight: 4 }}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={login.password}
+            onChange={e => setLogin(l => ({ ...l, password: e.target.value }))}
+            style={{ padding: '0.3em 0.8em', borderRadius: 6, border: '1px solid #ccc', fontSize: 14, outline: 'none', marginRight: 4 }}
+          />
+          <button type="submit" style={{ background: '#ffc107', color: '#1e7e34', border: 'none', borderRadius: 6, padding: '0.3em 1.2em', fontWeight: 700, fontSize: 14, cursor: 'pointer', marginRight: 8 }}>Login</button>
+        </form>
+        <Link href="/register" style={{ color: '#ffc107', fontWeight: 600, textDecoration: 'none', marginRight: 12, marginLeft: 8 }}>Register</Link>
+        <Link href="/forgot-password" style={{ color: '#fff', fontWeight: 400, textDecoration: 'underline', marginRight: 8 }}>Forgot?</Link>
       </div>
-      {/* Sign in options on the right */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-        {bettingUser ? (
-          <>
-            <span style={{ fontWeight: 500, color: '#ffc107', marginRight: 16 }}>{bettingUser.username || bettingUser.email || 'User'}</span>
-            <span style={{ background: '#ffc107', color: '#1e7e34', borderRadius: 16, padding: '0.3em 1em', fontWeight: 600, marginRight: 8 }}>
-              €{bettingUser?.wallet?.balance ?? 0}
-            </span>
-            <button style={{ background: 'transparent', color: '#fff', border: '1px solid #ffc107', borderRadius: 8, padding: '0.4em 1.2em', fontWeight: 600, cursor: 'pointer' }}>Sign Out</button>
-          </>
-        ) : (
-          <>
-            <Link href="/login" style={{ color: '#ffc107', fontWeight: 600, textDecoration: 'none', marginRight: 8 }}>Sign In</Link>
-            <Link href="/register" style={{ background: '#ffc107', color: '#1e7e34', borderRadius: 16, padding: '0.4em 1.2em', fontWeight: 600, textDecoration: 'none' }}>Register</Link>
-          </>
-        )}
-      </div>
-    </nav>
+      {/* Bottom row: logo and nav */}
+      <nav className={styles.container} style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        background: '#1e7e34',
+        color: '#fff',
+        height: 64,
+        padding: '0 2rem',
+        boxShadow: '0 2px 8px rgba(30,126,52,0.08)'
+      }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
+          <Image src="/ultrabet-logo.svg" alt="Ultrabet Logo" width={40} height={40} style={{ display: 'block' }} />
+          <span style={{ fontWeight: 700, fontSize: 24, color: '#ffc107', letterSpacing: 1 }}>Ultrabet</span>
+        </Link>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+          <PageNav />
+        </div>
+      </nav>
+    </div>
   )
 }
 
-export default TopBar;
