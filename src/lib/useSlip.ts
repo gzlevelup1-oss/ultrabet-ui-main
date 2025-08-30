@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BetSlipOption, Slip } from '@/ui/bet-slip/bet-slip'
 import { kv } from '@vercel/kv'
-import { UserContext, UserProfile, useUser } from '@auth0/nextjs-auth0/client'
+// import { useUser } from '@auth0/nextjs-auth0/client'
 import { MarketOption } from '@/gql/types.generated'
 import { SlipType } from '@/lib/slip-context'
 
@@ -50,14 +50,12 @@ async function placeBet(
 }
 
 const useSlip = (): SlipType => {
-  const { user } = useUser()
+  // const user = null // Auth0 removed, user is always null
   const [loading, setIsLoading] = useState(false)
   const [options, setOptions] = useState<BetSlipOption[]>([])
 
   useEffect(() => {
-    if (!user) {
-      return
-    }
+    // Auth0 removed: always fetch slip data
     const fetchData = async () => {
       setIsLoading(true)
       try {
@@ -70,12 +68,10 @@ const useSlip = (): SlipType => {
       }
     }
     fetchData()
-  }, [user])
+  }, [])
 
   const refetchSlip = async () => {
-    if (!user) {
-      return
-    }
+    // Auth0 removed: always fetch slip data
     const slip = await loadSlip()
     setOptions(Object.values(slip))
   }

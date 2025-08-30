@@ -1,17 +1,8 @@
 .container {
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    width: 100%;
-    background-color: var(--pink-lavender);
-    color: var(--black);
+    /* All layout and theme now handled inline in TopBar for Ultrabet look */
+    font-family: 'Inter', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    height: 2.1em;
     overflow: visible;
-    -webkit-transition: height 0.5s;
-    -moz-transition: height 0.5s;
-    -ms-transition: height 0.5s;
-    transition: height 0.5s;
 }
 
 .profileActions {

@@ -1,4 +1,4 @@
-import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0'
+// import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0'
 import { NextRequest, NextResponse } from 'next/server'
 import { MarketOption } from '@/gql/types.generated'
 import { kv } from '@vercel/kv'

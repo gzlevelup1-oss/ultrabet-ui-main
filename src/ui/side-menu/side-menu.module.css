@@ -1,0 +1,74 @@
+.sidebar {
+  width: 220px;
+  background: #1e7e34;
+  color: #fff;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 1.5rem 0.2rem 1.5rem 0.2rem;
+  box-shadow: 2px 0 12px rgba(30,126,52,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+.menuHeader {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-bottom: 0.75rem;
+  padding-left: 0.7rem;
+  letter-spacing: 0.5px;
+}
+.menuItem {
+  margin-bottom: 0.5rem;
+}
+.menuLink {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  transition: background 0.18s, color 0.18s;
+}
+.menuLink:hover, .menuLink:focus {
+  background: #ffc107;
+  color: #1e7e34;
+}
+.iconWrap {
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+}
+.sportTitle {
+  flex: 1;
+}
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+    min-height: unset;
+    flex-direction: row;
+    padding: 0.5rem 0;
+    box-shadow: none;
+  }
+  .menuList {
+    flex-direction: row;
+    display: flex;
+    margin: 0 0.5rem 0 0.5rem;
+  }
+  .menuItem {
+    margin: 0 0.5rem 0 0.5rem;
+  }
+}

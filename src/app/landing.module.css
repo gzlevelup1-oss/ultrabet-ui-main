@@ -1,0 +1,180 @@
+.landing {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #1e7e34 60%, #ffc107 100%);
+  color: #fff;
+  padding: 3rem 2rem 2rem 2rem;
+  border-radius: 0 0 32px 32px;
+  margin-bottom: 2rem;
+}
+.heroContent {
+  max-width: 500px;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.cta {
+  background: #ffc107;
+  color: #222;
+  padding: 0.75rem 2rem;
+  border-radius: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+.cta:hover {
+  background: #fff;
+  color: #1e7e34;
+}
+.heroImage {
+  min-width: 300px;
+}
+
+.sportsSection {
+  margin: 2rem 0;
+}
+.sportsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.sportCard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(30,126,52,0.08);
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  font-weight: 500;
+  color: #1e7e34;
+  font-size: 1rem;
+  transition: box-shadow 0.2s;
+}
+.sportCard:hover {
+  box-shadow: 0 4px 16px rgba(30,126,52,0.18);
+  background: #e9ffe3;
+}
+
+.matchesSection {
+  margin: 2rem 0;
+}
+.matchesTableWrapper {
+  overflow-x: auto;
+}
+.matchesTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.matchesTable th, .matchesTable td {
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.matchesTable th {
+  background: #1e7e34;
+  color: #fff;
+  font-weight: 600;
+}
+.matchesTable tr:nth-child(even) {
+  background: #f2f2f2;
+}
+.detailsBtn {
+  background: #ffc107;
+  color: #222;
+  border: none;
+  border-radius: 16px;
+  padding: 0.4rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.detailsBtn:hover {
+  background: #1e7e34;
+  color: #fff;
+}
+
+.promotionsSection {
+  margin: 2rem 0;
+}
+.promosGrid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.promoCard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(255,193,7,0.08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 280px;
+  font-size: 1rem;
+  color: #1e7e34;
+}
+.promoCard span {
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.footer {
+  background: #1e7e34;
+  color: #fff;
+  padding: 2rem 1rem 1rem 1rem;
+  border-radius: 24px 24px 0 0;
+  margin-top: 3rem;
+  text-align: center;
+}
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.footerLinks a {
+  color: #ffc107;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footerLinks a:hover {
+  text-decoration: underline;
+}
+.footerInfo {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem;
+  }
+  .heroImage {
+    margin-top: 1.5rem;
+  }
+  .sportsGrid, .promosGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,19 +1,21 @@
 'use client'
 
 import Link from 'next/link'
-import { formatTime } from '@/ui/date-util'
-import { useUser } from '@auth0/nextjs-auth0/client'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './top-bar.module.css'
+import Image from 'next/image'
 import { User } from '@/gql/types.generated'
 import { PageNav } from '@/ui/page-nav'
+
 
 export type Props = {
   bettingUser: User | null
 }
 
-export default function TopBar({ bettingUser }: Props) {
-  const { user, isLoading } = useUser()
+function TopBar({ bettingUser }: Props) {
+
+
+  // const { user, isLoading } = useUser()
   const [userMenuVisible, setUserMenuVisible] = useState(false)
   const [toggleHorizontalTimeout, setToggleHorizontalTimeout] = useState<NodeJS.Timeout | null>(
     null
@@ -63,63 +65,49 @@ export default function TopBar({ bettingUser }: Props) {
   }, [toggleHorizontalTimeout, toggleMenu])
 
   return (
-    <div ref={menuRef} className={`${styles.container} pure-g`} id="topmenu">
-      <div className="pure-u-1 pure-u-md-1-3">
-        <div className="pure-menu">
-          <Link href="#" className="pure-menu-heading custom-brand">
-            Parabolic Bet
-          </Link>
-          <a
-            href="#"
-            ref={toggleRef}
-            className={styles.toggle}
-            id="toggle"
-            onClick={(e) => {
-              e.preventDefault()
-              toggleMenu()
-            }}
-          >
-            <s className={styles.bar}></s>
-            <s className={styles.bar}></s>
-          </a>
-        </div>
+    <nav ref={menuRef} className={styles.container} id="topmenu" style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      background: '#1e7e34',
+      color: '#fff',
+      height: '64px',
+      padding: '0 2rem',
+      boxShadow: '0 2px 8px rgba(30,126,52,0.08)',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 100
+    }}>
+      {/* Logo on the left */}
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
+        <Image src="/ultrabet-logo.svg" alt="Ultrabet Logo" width={40} height={40} style={{ display: 'block' }} />
+        <span style={{ fontWeight: 700, fontSize: 24, color: '#ffc107', letterSpacing: 1 }}>Ultrabet</span>
+      </Link>
+      {/* Center navigation */}
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+        <PageNav />
       </div>
-      <div className="pure-u-1 pure-u-md-1-3">
-        <div className="pure-menu pure-menu-horizontal custom-can-transform">
-          <PageNav />
-        </div>
+      {/* Sign in options on the right */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+        {bettingUser ? (
+          <>
+            <span style={{ fontWeight: 500, color: '#ffc107', marginRight: 16 }}>{bettingUser.username || bettingUser.email || 'User'}</span>
+            <span style={{ background: '#ffc107', color: '#1e7e34', borderRadius: 16, padding: '0.3em 1em', fontWeight: 600, marginRight: 8 }}>
+              €{bettingUser?.wallet?.balance ?? 0}
+            </span>
+            <button style={{ background: 'transparent', color: '#fff', border: '1px solid #ffc107', borderRadius: 8, padding: '0.4em 1.2em', fontWeight: 600, cursor: 'pointer' }}>Sign Out</button>
+          </>
+        ) : (
+          <>
+            <Link href="/login" style={{ color: '#ffc107', fontWeight: 600, textDecoration: 'none', marginRight: 8 }}>Sign In</Link>
+            <Link href="/register" style={{ background: '#ffc107', color: '#1e7e34', borderRadius: 16, padding: '0.4em 1.2em', fontWeight: 600, textDecoration: 'none' }}>Register</Link>
+          </>
+        )}
       </div>
-      <div className={`pure-u-1 pure-u-md-1-3 ${styles.profileActions}`}>
-        <div className={`pure-menu pure-menu-horizontal`}>
-          <ul className={`pure-menu-list`}>
-            <li className={`pure-menu-item pure-menu-has-children pure-menu-allow-hover`}>
-              {user ? (
-                <a href="#" className={`pure-menu-link`}>
-                  {user.name}
-                </a>
-              ) : (
-                <Link className="pure-menu-link" href={'/api/auth/login'}>
-                  Login
-                </Link>
-              )}
-              {user && (
-                <ul className="pure-menu-children">
-                  <li className={`pure-menu-item`}>
-                    <Link className="pure-menu-link" href={'/api/auth/logout'}>
-                      Logout
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li className={`pure-menu-item ${styles.accountInfo}`}>
-              <div className={styles.balance}> €{bettingUser?.wallet?.balance ?? 0}</div>
-              <div className={styles.label}>{formatTime(new Date())}</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    // </div>
+    </nav>
   )
 }
+
+export default TopBar;

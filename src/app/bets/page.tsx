@@ -1,17 +1,13 @@
-import { getClient } from '@/lib/client'
-import { ListBetsDocument } from '@/gql/documents.generated'
 import styles from './page.module.css'
 import React from 'react'
-import { Bet, BetOption, BetStatus, Maybe } from '@/gql/types.generated'
-import { fetchAccessToken, getLongBetName } from '@/lib/util'
-import { redirect } from 'next/navigation'
+import { Bet, BetOption, BetStatus } from '@/gql/types.generated'
+import { getLongBetName } from '@/lib/util'
 import { formatTime } from '@/ui/date-util'
 import { getOptionPointLabel, getSpreadOptionLabel, renderScore } from '@/ui/event-util'
 import { Card } from '@/ui/card/card'
 import CardHeader from '@/ui/card/card-header'
 import { CardContent } from '@/ui/card/card-content'
 
-export const revalidate = 60
 
 const BetListItem: React.FC<{ bet: Bet }> = ({ bet }) => {
   const betType = getLongBetName(bet.betOptions?.length ?? 1)
@@ -39,28 +35,18 @@ const BetListItem: React.FC<{ bet: Bet }> = ({ bet }) => {
           </div>
           <div>{option?.marketOption.odds}</div>
         </div>
-        <div className={`${styles.eventName} ${styles.smallText}`}>
-          {option?.marketOption.market?.event?.homeTeamName}{' '}
-          {getSpreadOptionLabel(option.marketOption.market?.event ?? null, true)} vs{' '}
-          {option?.marketOption.market?.event?.awayTeamName}{' '}
-          {getSpreadOptionLabel(option.marketOption.market?.event ?? null, false)}
-          {event && !event.sport?.key.startsWith('tennis') && (
-            <span className={styles.score}>
-              {renderScore(event)}{' '}
-              <span className={styles.live}>
-                {!event?.result && event.isLive && !event.completed ? ' live' : ''}
-              </span>
-            </span>
-          )}
+        <div className={styles.eventMeta}>
+          {event?.name} | {event?.startTime ? formatTime(new Date(event.startTime)) : ''}
         </div>
       </li>
     )
   })
 
   return (
-    <Card className={styles.betItem}>
-      <CardHeader className={styles.betHeader} title={`$${bet.stake} ${betType}`}>
+    <Card>
+      <CardHeader title={betType}>
         <div className={styles.betHeader}>
+          <div className={styles.betType}>{betType}</div>
           <div className={styles.betMeta}>Placed {formatTime(new Date(bet.createdAt))}</div>
         </div>
       </CardHeader>
@@ -81,37 +67,107 @@ const BetListItem: React.FC<{ bet: Bet }> = ({ bet }) => {
   )
 }
 
-export default async function Page() {
-  const accessToken = await fetchAccessToken()
-  if (!accessToken) {
-    console.info('No access token, redirecting to login')
-    redirect('/api/auth/login')
-  }
-  const data = await getClient(true).query({
-    query: ListBetsDocument,
-    context: {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
+export default function Page() {
+  // Hardcoded mock data for bets
+  const bets = [
+    {
+      id: '1',
+      betOptions: [
+        {
+          id: 101,
+          status: BetStatus.Won,
+          marketOption: {
+            id: '201',
+            name: 'Team A vs Team B',
+            odds: 2.5,
+            market: {
+              id: 'm1',
+              name: 'Match Winner',
+              isLive: false,
+              source: 'mock',
+              event: {
+                id: '301',
+                name: 'Event 1',
+                startTime: new Date().toISOString(),
+                awayTeamName: 'Team B',
+                completed: false,
+                homeTeamName: 'Team A',
+                isLive: false,
+                sport: {
+                  id: 's1',
+                  key: 'football',
+                  title: 'Football',
+                  description: 'Football sport',
+                  active: true,
+                  group: 'main',
+                  hasOutrights: false,
+                },
+              },
+            },
+          },
+          bet: {} as any,
+        },
+      ],
+      status: BetStatus.Won,
+      stake: 10,
+      potentialReturn: 25,
+      potentialWinnings: 25,
+      createdAt: new Date().toISOString(),
     },
-  })
-  const bets: Bet[] = data.data.listBets as Bet[]
-
-  if (bets.length === 0) {
-    return (
-      <main className={styles.main}>
-        <h1 className={styles.header}>My Bets</h1>
-        <p>No bets placed yet.</p>
-      </main>
-    )
-  }
+    {
+      id: '2',
+      betOptions: [
+        {
+          id: 102,
+          status: BetStatus.Lost,
+          marketOption: {
+            id: '202',
+            name: 'Team C vs Team D',
+            odds: 1.8,
+            market: {
+              id: 'm2',
+              name: 'Total Goals',
+              isLive: false,
+              source: 'mock',
+              event: {
+                id: '302',
+                name: 'Event 2',
+                startTime: new Date().toISOString(),
+                awayTeamName: 'Team D',
+                completed: false,
+                homeTeamName: 'Team C',
+                isLive: false,
+                sport: {
+                  id: 's1',
+                  key: 'football',
+                  title: 'Football',
+                  description: 'Football sport',
+                  active: true,
+                  group: 'main',
+                  hasOutrights: false,
+                },
+              },
+            },
+          },
+          bet: {} as any,
+        },
+      ],
+      status: BetStatus.Lost,
+      stake: 15,
+      potentialReturn: 27,
+      potentialWinnings: 0,
+      createdAt: new Date().toISOString(),
+    },
+  ];
 
   return (
     <main className={styles.main}>
       <h1 className={styles.header}>My Bets</h1>
-      {bets?.map((bet) => (
-        <BetListItem key={bet.id} bet={bet} />
-      ))}
+      {bets.length === 0 ? (
+        <p>No bets placed yet.</p>
+      ) : (
+        bets.map((bet) => <BetListItem key={bet.id} bet={bet} />)
+      )}
     </main>
   )
 }
