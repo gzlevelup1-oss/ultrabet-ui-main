@@ -50,38 +50,43 @@ export default function HomePage() {
       <div style={{ width: '100%', marginBottom: 16 }}>
         <Image src="/banner1.svg" alt="Banner 1" width={1200} height={120} style={{ width: '100%', height: 'auto' }} />
       </div>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1>Welcome to Ultrabet</h1>
-          <p className={styles.subtitle}>Bet on your favorite sports, play games, and win big!</p>
-          <Link href="/register" className={styles.cta}>Register Now</Link>
-        </div>
-        <div className={styles.heroImage}>
-          <Image src="/hero-banner.jpg" alt="Ultrabet Hero" width={500} height={300} />
-        </div>
-      </section>
 
-      {/* Sports Categories */}
-      <section className={styles.sportsSection}>
-        <h2>Popular Sports</h2>
-        <div className={styles.sportsGrid}>
-          <div className={styles.sportCard}><Image src="/sports/soccer.png" alt="Soccer" width={48} height={48} /><span>Soccer</span></div>
-          <div className={styles.sportCard}><Image src="/sports/basketball.png" alt="Basketball" width={48} height={48} /><span>Basketball</span></div>
-          <div className={styles.sportCard}><Image src="/sports/tennis.png" alt="Tennis" width={48} height={48} /><span>Tennis</span></div>
-          <div className={styles.sportCard}><Image src="/sports/volleyball.png" alt="Volleyball" width={48} height={48} /><span>Volleyball</span></div>
-          <div className={styles.sportCard}><Image src="/sports/boxing.png" alt="Boxing" width={48} height={48} /><span>Boxing</span></div>
-          <div className={styles.sportCard}><Image src="/sports/rugby.png" alt="Rugby" width={48} height={48} /><span>Rugby</span></div>
-        </div>
-      </section>
-
-      {/* Today's Matches (Collapsible) */}
+      {/* TODAY'S MATCHES HEADER */}
       <section className={styles.matchesSection}>
-        <h2>Today's Matches</h2>
+        <h2 style={{ fontWeight: 700, color: '#1e7e34', fontSize: 28, marginBottom: 12 }}>TODAY'S MATCHES</h2>
+
+        {/* Sports Icons Row */}
+        <div style={{ display: 'flex', overflowX: 'auto', gap: 24, padding: '12px 0 24px 0', background: '#fff', borderRadius: 16, marginBottom: 24 }}>
+          {[
+            { name: 'Soccer', icon: '/sports/soccer.png' },
+            { name: 'Basketball', icon: '/sports/basketball.png' },
+            { name: 'Futsal', icon: '/sports/futsal.png' },
+            { name: 'Table Tennis', icon: '/sports/table-tennis.png' },
+            { name: 'Rugby', icon: '/sports/rugby.png' },
+            { name: 'Darts', icon: '/sports/darts.png' },
+            { name: 'Floorball', icon: '/sports/floorball.png' },
+            { name: 'Handball', icon: '/sports/handball.png' },
+            { name: 'Cricket', icon: '/sports/cricket.png' },
+            { name: 'Ice Hockey', icon: '/sports/ice-hockey.png' },
+            { name: 'Volleyball', icon: '/sports/volleyball.png' },
+            { name: 'Baseball', icon: '/sports/baseball.png' },
+            { name: 'Boxing', icon: '/sports/boxing.png' },
+          ].map(sport => (
+            <div key={sport.name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 72 }}>
+              <div style={{ background: '#e9ffe3', borderRadius: '50%', width: 56, height: 56, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 6, border: '2px solid #1e7e34' }}>
+                <Image src={sport.icon} alt={sport.name} width={36} height={36} />
+              </div>
+              <span style={{ fontSize: 13, color: '#1e7e34', fontWeight: 600 }}>{sport.name}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Matches Table */}
         <div className={styles.matchesTableWrapper}>
-          <table className={styles.matchesTable}>
+          <table className={styles.matchesTable} style={{ background: '#fff', borderRadius: 12, overflow: 'hidden', width: '100%' }}>
             <thead>
-              <tr>
+              <tr style={{ background: '#1e7e34', color: '#fff', fontWeight: 700 }}>
+                <th>Game ID</th>
                 <th>League</th>
                 <th>Time</th>
                 <th>Teams</th>
@@ -91,13 +96,14 @@ export default function HomePage() {
                 <th>1X</th>
                 <th>X2</th>
                 <th>12</th>
-                <th>More</th>
+                <th>+</th>
               </tr>
             </thead>
             <tbody>
               {matches.map((m, idx) => (
                 <>
                   <tr key={m.league + m.teams} style={{ background: idx % 2 === 0 ? '#fff' : '#f2f2f2' }}>
+                    <td>{1893000 + idx}</td>
                     <td>{m.league}</td>
                     <td>{m.time}</td>
                     <td>{m.teams}</td>
@@ -108,14 +114,14 @@ export default function HomePage() {
                     <td>{m.odds['X2']}</td>
                     <td>{m.odds['12']}</td>
                     <td>
-                      <button className={styles.detailsBtn} onClick={() => setOpenIdx(openIdx === idx ? null : idx)}>
-                        {openIdx === idx ? 'Hide' : 'More'}
+                      <button className={styles.detailsBtn} onClick={() => setOpenIdx(openIdx === idx ? null : idx)} style={{ background: '#ffc107', color: '#1e7e34', border: 'none', borderRadius: 6, padding: '0.2em 0.8em', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
+                        {openIdx === idx ? '-' : '+'}
                       </button>
                     </td>
                   </tr>
                   {openIdx === idx && (
                     <tr>
-                      <td colSpan={10} style={{ background: '#e9ffe3', textAlign: 'left', padding: '1rem 2rem' }}>
+                      <td colSpan={11} style={{ background: '#e9ffe3', textAlign: 'left', padding: '1rem 2rem' }}>
                         <strong>More Bet Types:</strong>
                         <div style={{ display: 'flex', gap: '2rem', marginTop: 8 }}>
                           {m.more.map((bet) => (
