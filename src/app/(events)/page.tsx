@@ -42,21 +42,15 @@ const matches = [
   },
 ];
 
+
 export default function HomePage() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   return (
-    <main className={styles.landing}>
-      {/* Banner SVGs */}
-      <div style={{ width: '100%', marginBottom: 16 }}>
-        <Image src="/banner1.svg" alt="Banner 1" width={1200} height={120} style={{ width: '100%', height: 'auto' }} />
-      </div>
-
-      {/* TODAY'S MATCHES HEADER */}
-      <section className={styles.matchesSection}>
-        <h2 style={{ fontWeight: 700, color: '#1e7e34', fontSize: 28, marginBottom: 12 }}>TODAY'S MATCHES</h2>
-
+    <main style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 16px rgba(30,126,52,0.08)', margin: '2rem auto', padding: '1.5rem 1.5rem 2.5rem 1.5rem', maxWidth: 1100, minHeight: 600 }}>
+      <section>
+        <h2 style={{ fontWeight: 700, color: '#1e7e34', fontSize: 24, marginBottom: 12, letterSpacing: 1 }}>TODAY'S MATCHES</h2>
         {/* Sports Icons Row */}
-        <div style={{ display: 'flex', overflowX: 'auto', gap: 24, padding: '12px 0 24px 0', background: '#fff', borderRadius: 16, marginBottom: 24 }}>
+        <div style={{ display: 'flex', overflowX: 'auto', gap: 24, padding: '12px 0 24px 0', background: '#f7f7f7', borderRadius: 12, marginBottom: 24 }}>
           {[
             { name: 'Soccer', icon: '/sports/soccer.png' },
             { name: 'Basketball', icon: '/sports/basketball.png' },
@@ -80,41 +74,40 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-
         {/* Matches Table */}
-        <div className={styles.matchesTableWrapper}>
-          <table className={styles.matchesTable} style={{ background: '#fff', borderRadius: 12, overflow: 'hidden', width: '100%' }}>
+        <div style={{ borderRadius: 12, overflow: 'hidden', width: '100%', boxShadow: '0 1px 8px rgba(30,126,52,0.04)' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', background: '#fff' }}>
             <thead>
-              <tr style={{ background: '#1e7e34', color: '#fff', fontWeight: 700 }}>
-                <th>Game ID</th>
-                <th>League</th>
-                <th>Time</th>
-                <th>Teams</th>
-                <th>1</th>
-                <th>X</th>
-                <th>2</th>
-                <th>1X</th>
-                <th>X2</th>
-                <th>12</th>
-                <th>+</th>
+              <tr style={{ background: '#1e7e34', color: '#fff', fontWeight: 700, fontSize: 15 }}>
+                <th style={{ padding: '0.7em 0.5em' }}>Game ID</th>
+                <th style={{ padding: '0.7em 0.5em' }}>League</th>
+                <th style={{ padding: '0.7em 0.5em' }}>Time</th>
+                <th style={{ padding: '0.7em 0.5em' }}>Teams</th>
+                <th style={{ padding: '0.7em 0.5em' }}>1</th>
+                <th style={{ padding: '0.7em 0.5em' }}>X</th>
+                <th style={{ padding: '0.7em 0.5em' }}>2</th>
+                <th style={{ padding: '0.7em 0.5em' }}>1X</th>
+                <th style={{ padding: '0.7em 0.5em' }}>X2</th>
+                <th style={{ padding: '0.7em 0.5em' }}>12</th>
+                <th style={{ padding: '0.7em 0.5em' }}>+</th>
               </tr>
             </thead>
             <tbody>
               {matches.map((m, idx) => (
                 <>
-                  <tr key={m.league + m.teams} style={{ background: idx % 2 === 0 ? '#fff' : '#f2f2f2' }}>
-                    <td>{1893000 + idx}</td>
-                    <td>{m.league}</td>
-                    <td>{m.time}</td>
-                    <td>{m.teams}</td>
-                    <td>{m.odds['1']}</td>
-                    <td>{m.odds['X']}</td>
-                    <td>{m.odds['2']}</td>
-                    <td>{m.odds['1X']}</td>
-                    <td>{m.odds['X2']}</td>
-                    <td>{m.odds['12']}</td>
-                    <td>
-                      <button className={styles.detailsBtn} onClick={() => setOpenIdx(openIdx === idx ? null : idx)} style={{ background: '#ffc107', color: '#1e7e34', border: 'none', borderRadius: 6, padding: '0.2em 0.8em', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
+                  <tr key={m.league + m.teams} style={{ background: idx % 2 === 0 ? '#fff' : '#f7f7f7', fontSize: 15 }}>
+                    <td style={{ padding: '0.5em 0.5em' }}>{1893000 + idx}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.league}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.time}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.teams}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.odds['1']}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.odds['X']}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.odds['2']}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.odds['1X']}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.odds['X2']}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>{m.odds['12']}</td>
+                    <td style={{ padding: '0.5em 0.5em' }}>
+                      <button onClick={() => setOpenIdx(openIdx === idx ? null : idx)} style={{ background: '#ffc107', color: '#1e7e34', border: 'none', borderRadius: 6, padding: '0.2em 0.8em', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
                         {openIdx === idx ? '-' : '+'}
                       </button>
                     </td>
@@ -139,31 +132,6 @@ export default function HomePage() {
           </table>
         </div>
       </section>
-
-      {/* Promotions Section (SVG banners) */}
-      <section className={styles.promotionsSection}>
-        <h2>Promotions</h2>
-        <div className={styles.promosGrid}>
-          <div className={styles.promoCard}>
-            <Image src="/banner2.svg" alt="Promo Banner" width={1200} height={120} style={{ width: '100%', height: 'auto' }} />
-            <span>Get 100% Bonus on First Deposit!</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerLinks}>
-          <Link href="/how-to-bet">How To Bet</Link>
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/terms">Terms & Conditions</Link>
-          <Link href="/responsible-betting">Responsible Betting</Link>
-        </div>
-        <div className={styles.footerInfo}>
-          <span>Ultrabet Sports Betting © {new Date().getFullYear()}</span>
-          <span>Contact: support@ultrabet.com</span>
-        </div>
-      </footer>
     </main>
   );
 }

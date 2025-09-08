@@ -4,6 +4,7 @@ import TopBar from '@/ui/top-bar/top-bar'
 // import { UserProvider } from '@auth0/nextjs-auth0/client'
 import React from 'react'
 import { Analytics } from '@vercel/analytics/react'
+import BetSlip from '@/ui/bet-slip/bet-slip'
 // import { getClient } from '@/lib/client'
 // import { MeDocument } from '@/gql/documents.generated'
 // import { User } from '@/gql/types.generated'
@@ -43,8 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className={inter.className}>
         <TopBar bettingUser={me} />
-        <div id="layout">
-          <div id="layout">{children}</div>
+        <div id="layout" style={{ display: 'flex', minHeight: '100vh', background: 'linear-gradient(135deg, #fff 80%, #e0e0e0 100%)' }}>
+          <div style={{ flex: 1, paddingRight: 0 }}>{children}</div>
+          <BetSlip />
           <Analytics />
         </div>
       </body>

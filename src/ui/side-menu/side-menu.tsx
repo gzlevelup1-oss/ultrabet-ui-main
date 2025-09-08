@@ -35,29 +35,34 @@ const sportIcons: Record<string, string> = {
 };
 
 export function SideMenu({ sports }: Props) {
+  // Default time and date values
+  const today = new Date();
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  const defaultDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+  const defaultTime = `${pad(today.getHours())}:${pad(today.getMinutes())}`;
   return (
-    <aside className={styles.sidebar}>
+    <aside className={styles.sidebar} style={{ padding: '1.2rem 0.5rem 1.2rem 0.5rem', margin: 0, overflow: 'visible' }}>
       {/* Waliyabet-style top filter section */}
-      <div className={styles.filterSection}>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-          <button className={styles.filterBtn} style={{ fontWeight: 700 }}>Today</button>
-          <button className={styles.filterBtn}>Tomorrow</button>
+      <div className={styles.filterSection} style={{ margin: 0, padding: '1rem 0.5rem 1rem 0.5rem', overflow: 'visible' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 10 }}>
+          <button className={styles.filterBtn} style={{ fontWeight: 700, borderRadius: '8px 8px 0 0', borderBottom: '1px solid #e0e0e0' }}>Today</button>
+          <button className={styles.filterBtn} style={{ borderRadius: '0 0 8px 8px' }}>Tomorrow</button>
         </div>
         <div style={{ marginBottom: 10 }}>
           <label style={{ fontWeight: 600, color: '#1e7e34', fontSize: 13 }}>--Time Filter--</label>
-          <input type="time" className={styles.timeInput} style={{ marginLeft: 8, borderRadius: 6, border: '1px solid #ccc', padding: '2px 8px', fontSize: 13 }} />
+          <input type="time" className={styles.timeInput} defaultValue={defaultTime} style={{ marginLeft: 8, borderRadius: 6, border: '1px solid #ccc', padding: '2px 8px', fontSize: 13, background: '#fff', color: '#1e7e34' }} />
         </div>
         <div style={{ marginBottom: 10 }}>
           <label style={{ fontWeight: 600, color: '#1e7e34', fontSize: 13 }}>Select date</label>
-          <input type="date" className={styles.dateInput} style={{ marginLeft: 8, borderRadius: 6, border: '1px solid #ccc', padding: '2px 8px', fontSize: 13 }} />
+          <input type="date" className={styles.dateInput} defaultValue={defaultDate} style={{ marginLeft: 8, borderRadius: 6, border: '1px solid #ccc', padding: '2px 8px', fontSize: 13, background: '#fff', color: '#1e7e34' }} />
         </div>
         <div style={{ marginBottom: 10 }}>
-          <span className={styles.menuHeader} style={{ color: '#1e7e34', fontWeight: 700, fontSize: 14 }}>Top Bets</span>
+          <span className={styles.menuHeader} style={{ color: '#ffc107', fontWeight: 700, fontSize: 14 }}>Top Bets</span>
           <ul className={styles.topBetsList}>
             {leagues.map((league) => (
               <li key={league.name} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '2px 0' }}>
                 <input type="checkbox" style={{ accentColor: '#1e7e34', marginRight: 4 }} />
-                <span style={{ flex: 1 }}>{league.name}</span>
+                <span style={{ flex: 1, color: '#1e7e34', fontWeight: 600 }}>{league.name}</span>
                 <span style={{ color: '#ffc107', fontWeight: 600 }}>{league.count}</span>
               </li>
             ))}

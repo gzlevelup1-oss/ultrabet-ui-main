@@ -1,13 +1,13 @@
 /* Sidebar main container */
 .sidebar {
-  width: 220px;
-  background: #1e7e34;
-  color: #fff;
+  width: 240px;
+  background: linear-gradient(135deg, #fff 80%, #e0e0e0 100%);
+  color: #1e7e34;
   min-height: 100vh;
-  height: 100vh;
-  max-height: 100vh;
-  overflow-y: auto;
-  padding: 1.5rem 0.2rem 1.5rem 0.2rem;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  padding: 1.2rem 0.5rem 1.2rem 0.5rem;
   box-shadow: 2px 0 12px rgba(30,126,52,0.08);
   display: flex;
   flex-direction: column;
@@ -20,15 +20,15 @@
 
 /* Waliyabet-style filter section at the top */
 .filterSection {
-  background: #184e25;
-  border-radius: 14px;
+  background: linear-gradient(120deg, #fff 85%, #e0e0e0 100%);
+  border-radius: 14px 28px 14px 28px;
   box-shadow: 0 2px 8px rgba(30,126,52,0.08);
-  padding: 1.2rem 1rem 1rem 1rem;
-  margin-bottom: 1.5rem;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  color: #fff;
+  color: #1e7e34;
 }
 .filterBtn {
   background: #1e7e34;
@@ -48,12 +48,18 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  color: #1e7e34;
+  font-size: 13px;
+  max-height: none;
+  overflow: visible;
+  border-radius: 10px;
+  background: transparent;
 }
 .filterSection label,
 .filterSection span,
 .filterSection input,
 .filterSection button {
-  color: #fff !important;
+  color: #1e7e34 !important;
 }
 .filterSection .menuHeader {
   color: #ffc107 !important;
@@ -147,10 +153,12 @@
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 0.4em 1.2em;
+  padding: 0.7em 1.2em;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.18s, color 0.18s;
+  margin: 0;
+  box-shadow: 0 1px 4px rgba(30,126,52,0.08);
 }
 .filterBtn:hover, .filterBtn:focus {
   background: #ffc107;
