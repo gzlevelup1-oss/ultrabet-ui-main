@@ -1,102 +1,333 @@
-.container {
-    /* All layout and theme now handled inline in TopBar for Ultrabet look */
-    font-family: 'Inter', Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow: visible;
+/* SmartBet-inspired header styles */
+.headerWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.profileActions {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-    align-items: center;
+.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.container a, .container li {
-    color: black;
+/* Top utility bar */
+.topBar {
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+  color: #fff;
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.label {
-    border: none;
-    font-weight: 300;
-    color: black;
-    display: inline;
+.topBarContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.balance {
-    display: inline;
-    color: var(--egyptian-blue);
-    margin-right: 0.5em;
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-
-.open {
-    height: 14em;
+.welcomeText {
+  font-weight: 500;
+  opacity: 0.9;
 }
 
-.profileActions {
-    text-align: right;
+.languageSelector {
+  position: relative;
 }
 
-.accountInfo {
-    padding-right: 1em !important;
+.langSelect {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
-.toggle {
-    width: 34px;
-    height: 34px;
-    position: absolute;
-    top: 0;
-    right: 0;
+.langSelect option {
+  background: #1a472a;
+  color: #fff;
+}
+
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.loginForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loginInput {
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 12px;
+  width: 120px;
+}
+
+.loginInput::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.loginBtn {
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.loginBtn:hover {
+  background: #e55a2b;
+}
+
+.registerLink {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+
+.registerLink:hover {
+  color: #fff;
+}
+
+/* Main header */
+.mainHeader {
+  background: #fff;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.headerContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.logoLink:hover {
+  transform: scale(1.02);
+}
+
+.logoImage {
+  display: block;
+}
+
+.logoText {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a472a;
+  letter-spacing: -0.5px;
+}
+
+.desktopNav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 40px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.balanceInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.balanceLabel {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.balanceAmount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a472a;
+}
+
+.depositBtn {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(255, 107, 53, 0.2);
+}
+
+.depositBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+}
+
+.mobileMenuToggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  gap: 4px;
+}
+
+.hamburger {
+  width: 24px;
+  height: 3px;
+  background: #1a472a;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.mobileNav {
+  display: none;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  padding: 20px;
+}
+
+.mobileNavOpen {
+  display: block;
+}
+
+.mobileActions {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileDepositBtn {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mobileBalance {
+  text-align: center;
+  font-weight: 600;
+  color: #1a472a;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .topBarContent,
+  .headerContent {
+    padding: 0 16px;
+  }
+  
+  .desktopNav {
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topBar {
     display: none;
+  }
+  
+  .headerContent {
+    padding: 0 16px;
+  }
+  
+  .desktopNav {
+    display: none;
+  }
+  
+  .mobileMenuToggle {
+    display: flex;
+  }
+  
+  .balanceInfo {
+    display: none;
+  }
+  
+  .depositBtn {
+    display: none;
+  }
+  
+  .logoText {
+    font-size: 24px;
+  }
 }
 
-.toggle .bar {
-    background-color: #777;
-    display: block;
-    width: 20px;
-    height: 2px;
-    border-radius: 100px;
-    position: absolute;
-    top: 18px;
-    right: 7px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    transition: all 0.5s;
-}
-
-.toggle .bar:first-child {
-    -webkit-transform: translateY(-6px);
-    -moz-transform: translateY(-6px);
-    -ms-transform: translateY(-6px);
-    transform: translateY(-6px);
-}
-
-.x .bar {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.x .bar:first-child {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-
-@media (max-width: 47.999em) {
-    .profileActions {
-        text-align: left;
-    }
-
-    .toggle {
-        display: block;
-    }
-
-    .container {
-        overflow: hidden;
-    }
+@media (max-width: 480px) {
+  .topBarContent {
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 12px;
+  }
+  
+  .topBarLeft,
+  .topBarRight {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .loginForm {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .headerContent {
+    padding: 0 12px;
+  }
+  
+  .logoText {
+    font-size: 20px;
+  }
 }

@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './msw-init'
 import TopBar from '@/ui/top-bar/top-bar'
+import Footer from '@/components/footer/footer'
 // import { UserProvider } from '@auth0/nextjs-auth0/client'
 import React from 'react'
 import { Analytics } from '@vercel/analytics/react'
@@ -44,9 +45,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className={inter.className}>
         <TopBar bettingUser={me} />
-        <div id="layout" style={{ display: 'flex', minHeight: '100vh', background: 'linear-gradient(135deg, #fff 80%, #e0e0e0 100%)' }}>
+        <div id="layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: 'linear-gradient(135deg, #fff 80%, #e0e0e0 100%)', paddingTop: '102px' }}>
           <div style={{ flex: 1, paddingRight: 0 }}>{children}</div>
           <BetSlip />
+          <Footer />
           <Analytics />
         </div>
       </body>

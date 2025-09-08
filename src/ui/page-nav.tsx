@@ -24,14 +24,12 @@ export function NavLink({
   const isActive = selectionResolver?.(slug, path)
 
   return (
-    <li className="pure-menu-item">
-      <Link
-        className={classnames(styles.navLink, className, isActive && styles.navLinkActive)}
-        href={slug}
-      >
-        {label}
-      </Link>
-    </li>
+    <Link
+      className={classnames(styles.navLink, className, isActive && styles.navLinkActive)}
+      href={slug}
+    >
+      {label}
+    </Link>
   )
 }
 
@@ -42,12 +40,12 @@ export function MarketNav({ prefix }: { prefix: string }) {
   }
 
   return (
-    <nav className={classnames(styles.marketNav, 'pure-menu pure-menu-horizontal')}>
-      <ul className={'pure-menu-list'}>
-        <NavLink selectionResolver={selectionResolver} slug={`${prefix}/h2h`} label="1x2" />
-        <NavLink selectionResolver={selectionResolver} slug={`${prefix}/spreads`} label="Spreads" />
-        <NavLink selectionResolver={selectionResolver} slug={`${prefix}/totals`} label="Totals" />
-      </ul>
+    <nav className={styles.marketNav}>
+      <div className={styles.marketNavList}>
+        <NavLink selectionResolver={selectionResolver} slug={`${prefix}/h2h`} label="Match Winner" />
+        <NavLink selectionResolver={selectionResolver} slug={`${prefix}/spreads`} label="Handicap" />
+        <NavLink selectionResolver={selectionResolver} slug={`${prefix}/totals`} label="Over/Under" />
+      </div>
     </nav>
   )
 }
@@ -58,14 +56,13 @@ export function PageNav() {
   }
 
   return (
-    <ul className="pure-menu-list" style={{ display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'center', margin: 0, padding: 0 }}>
-      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/'} label="Home" /></li>
-      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/league'} label="League" /></li>
-      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/aviator'} label="Aviator" /></li>
-      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/virtuals'} label="Virtuals" /></li>
-      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/games'} label="Games" /></li>
-      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/jackpot'} label="Jackpot" /></li>
-      <li className="pure-menu-item"><NavLink selectionResolver={selectionResolver} className="pure-menu-link" activeClassName="pure-menu-selected" slug={'/promotions'} label="Promotions" /></li>
-    </ul>
+    <nav className={styles.mainNav}>
+      <NavLink selectionResolver={selectionResolver} slug={'/'} label="Sports" />
+      <NavLink selectionResolver={selectionResolver} slug={'/live'} label="Live Betting" />
+      <NavLink selectionResolver={selectionResolver} slug={'/virtuals'} label="Virtual Sports" />
+      <NavLink selectionResolver={selectionResolver} slug={'/casino'} label="Casino" />
+      <NavLink selectionResolver={selectionResolver} slug={'/promotions'} label="Promotions" />
+      <NavLink selectionResolver={selectionResolver} slug={'/results'} label="Results" />
+    </nav>
   )
 }

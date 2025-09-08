@@ -1,0 +1,236 @@
+/* SmartBet-inspired footer styles */
+.footer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #e5e7eb;
+  margin-top: auto;
+}
+
+.footerContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footerMain {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 60px 0 40px;
+  border-bottom: 1px solid #374151;
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoSection {
+  margin-bottom: 20px;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.footerLogoText {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.companyDescription {
+  color: #9ca3af;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  background: #ff6b35;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLink {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  padding: 4px 0;
+}
+
+.footerLink:hover {
+  color: #ff6b35;
+  padding-left: 8px;
+}
+
+.paymentSection {
+  padding: 40px 0;
+  border-bottom: 1px solid #374151;
+}
+
+.paymentMethods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.paymentMethod {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.paymentMethod:hover {
+  background: rgba(255, 107, 53, 0.1);
+  border-color: #ff6b35;
+  color: #ff6b35;
+}
+
+.footerBottom {
+  padding: 30px 0;
+}
+
+.bottomContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.copyright {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.certifications {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.certification {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .footerMain {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 50px 0 30px;
+  }
+  
+  .footerContent {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footerMain {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px 0 30px;
+  }
+  
+  .bottomContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .certifications {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .paymentMethods {
+    justify-content: center;
+  }
+  
+  .socialLinks {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerContent {
+    padding: 0 12px;
+  }
+  
+  .footerMain {
+    padding: 30px 0 20px;
+    gap: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .footerLogoText {
+    font-size: 20px;
+  }
+  
+  .paymentMethods {
+    gap: 12px;
+  }
+  
+  .paymentMethod {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}

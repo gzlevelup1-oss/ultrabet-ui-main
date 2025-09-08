@@ -7,57 +7,111 @@ import Image from 'next/image'
 import { User } from '@/gql/types.generated'
 import { PageNav } from '../page-nav'
 
-
 export type Props = {
   bettingUser: User | null
 }
 
 export default function TopBar({ bettingUser }: Props) {
-  const [login, setLogin] = useState({ username: '', password: '' });
-  return (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, width: '100%' }}>
-      {/* Top row: login/register */}
-      <div style={{ background: '#184e25', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', height: 38, padding: '0 2rem', borderBottom: '1px solid #1e7e34' }}>
-        <form style={{ display: 'flex', alignItems: 'center', gap: 8 }} onSubmit={e => e.preventDefault()}>
-          <input
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [login, setLogin] = useState({ username: '', password: '' })
 
-            placeholder="Username"
-            value={login.username}
-            onChange={e => setLogin(l => ({ ...l, username: e.target.value }))}
-            style={{ padding: '0.3em 0.8em', borderRadius: 6, border: '1px solid #ccc', fontSize: 14, outline: 'none', marginRight: 4 }}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={login.password}
-            onChange={e => setLogin(l => ({ ...l, password: e.target.value }))}
-            style={{ padding: '0.3em 0.8em', borderRadius: 6, border: '1px solid #ccc', fontSize: 14, outline: 'none', marginRight: 4 }}
-          />
-          <button type="submit" style={{ background: '#ffc107', color: '#1e7e34', border: 'none', borderRadius: 6, padding: '0.3em 1.2em', fontWeight: 700, fontSize: 14, cursor: 'pointer', marginRight: 8 }}>Login</button>
-        </form>
-        <Link href="/register" style={{ color: '#ffc107', fontWeight: 600, textDecoration: 'none', marginRight: 12, marginLeft: 8 }}>Register</Link>
-        <Link href="/forgot-password" style={{ color: '#fff', fontWeight: 400, textDecoration: 'underline', marginRight: 8 }}>Forgot?</Link>
-      </div>
-      {/* Bottom row: logo and nav */}
-      <nav className={styles.container} style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        background: '#1e7e34',
-        color: '#fff',
-        height: 64,
-        padding: '0 2rem',
-        boxShadow: '0 2px 8px rgba(30,126,52,0.08)'
-      }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-          <Image src="/ultrabet-logo.svg" alt="Ultrabet Logo" width={40} height={40} style={{ display: 'block' }} />
-          <span style={{ fontWeight: 700, fontSize: 24, color: '#ffc107', letterSpacing: 1 }}>Ultrabet</span>
-        </Link>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-          <PageNav />
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <div className={`${styles.headerWrapper} ${isScrolled ? styles.scrolled : ''}`}>
+      {/* Top utility bar */}
+      <div className={styles.topBar}>
+        <div className={styles.topBarContent}>
+          <div className={styles.topBarLeft}>
+            <span className={styles.welcomeText}>Welcome to Ultrabet</span>
+            <div className={styles.languageSelector}>
+              <select className={styles.langSelect}>
+                <option value="en">English</option>
+                <option value="am">አማርኛ</option>
+              </select>
+            </div>
+          </div>
+          <div className={styles.topBarRight}>
+            <form className={styles.loginForm} onSubmit={e => e.preventDefault()}>
+              <input
+                type="text"
+                placeholder="Username"
+                value={login.username}
+                onChange={e => setLogin(l => ({ ...l, username: e.target.value }))}
+                className={styles.loginInput}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={login.password}
+                onChange={e => setLogin(l => ({ ...l, password: e.target.value }))}
+                className={styles.loginInput}
+              />
+              <button type="submit" className={styles.loginBtn}>Login</button>
+            </form>
+            <Link href="/register" className={styles.registerLink}>Register</Link>
+          </div>
         </div>
-      </nav>
+      </div>
+
+      {/* Main header */}
+      <header className={styles.mainHeader}>
+        <div className={styles.headerContent}>
+          {/* Logo */}
+          <Link href="/" className={styles.logoLink}>
+            <Image 
+              src="/ultrabet-logo.svg" 
+              alt="Ultrabet" 
+              width={45} 
+              height={45} 
+              className={styles.logoImage}
+            />
+            <span className={styles.logoText}>Ultrabet</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className={styles.desktopNav}>
+            <PageNav />
+          </nav>
+
+          {/* Header Actions */}
+          <div className={styles.headerActions}>
+            <div className={styles.balanceInfo}>
+              <span className={styles.balanceLabel}>Balance:</span>
+              <span className={styles.balanceAmount}>ETB 0.00</span>
+            </div>
+            <button className={styles.depositBtn}>Deposit</button>
+            
+            {/* Mobile menu toggle */}
+            <button 
+              className={styles.mobileMenuToggle}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <span className={styles.hamburger}></span>
+              <span className={styles.hamburger}></span>
+              <span className={styles.hamburger}></span>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.mobileNavOpen : ''}`}>
+          <PageNav />
+          <div className={styles.mobileActions}>
+            <button className={styles.mobileDepositBtn}>Deposit</button>
+            <div className={styles.mobileBalance}>
+              <span>Balance: ETB 0.00</span>
+            </div>
+          </div>
+        </div>
+      </header>
     </div>
   )
 }
-

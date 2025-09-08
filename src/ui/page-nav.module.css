@@ -1,24 +1,61 @@
-
+/* SmartBet-inspired navigation styles */
 .navLink {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 1.05em;
-    color: #fff;
-    letter-spacing: 0.04em;
-    padding: 0.5em 1.2em;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.18s, color 0.18s;
-    background: transparent;
-    display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  letter-spacing: 0.5px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background: transparent;
 }
-.navLink:hover, .navLink:focus {
-    background: #ffc10722;
-    color: #ffc107;
-    text-decoration: none;
+
+.navLink:hover {
+  color: #1a472a;
+  background: rgba(26, 71, 42, 0.05);
+  transform: translateY(-1px);
 }
+
+.navLink:focus {
+  outline: 2px solid #ff6b35;
+  outline-offset: 2px;
+}
+
 .navLinkActive {
-    color: #ffc107;
-    background: #fff2cc22;
-    font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(26, 71, 42, 0.2);
+}
+
+.navLinkActive:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #2d5a3d 0%, #1a472a 100%);
+  transform: translateY(-1px);
+}
+
+/* Mobile navigation styles */
+@media (max-width: 768px) {
+  .navLink {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 16px 20px;
+    border-radius: 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 16px;
+  }
+  
+  .navLink:last-child {
+    border-bottom: none;
+  }
+  
+  .navLinkActive {
+    background: #1a472a;
+    border-left: 4px solid #ff6b35;
+  }
 }

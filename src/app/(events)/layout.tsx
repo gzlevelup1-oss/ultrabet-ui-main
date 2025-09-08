@@ -18,11 +18,11 @@ export default function EventsLayout({ children }: { children: React.ReactNode }
   ];
   return (
     <>
-      <TopBar bettingUser={bettingUser} />
       <div style={{
         display: 'flex',
         minHeight: '100vh',
-        background: '#f7f7f7',
+        background: '#f8fafc',
+        paddingTop: 0,
       }}>
         <div style={{
           flex: '0 0 220px',
@@ -30,7 +30,7 @@ export default function EventsLayout({ children }: { children: React.ReactNode }
           maxHeight: '100vh',
           overflowY: 'auto',
           position: 'sticky',
-          top: 0,
+          top: '102px',
           zIndex: 10,
           boxShadow: '2px 0 12px rgba(30,126,52,0.08)'
         }}>
@@ -39,7 +39,7 @@ export default function EventsLayout({ children }: { children: React.ReactNode }
         <div style={{
           flex: 1,
           minWidth: 0,
-          padding: '0 0 0 0',
+          padding: '20px 0 0 0',
           margin: '0 auto 0 16px',
           maxWidth: 1200,
           width: '100%',
