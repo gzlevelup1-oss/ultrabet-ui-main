@@ -60,25 +60,28 @@ export function EventList({
           return (
             <CSSTransition key={event.id} timeout={500} classNames="flash">
               <div
-                className={`${styles.eventWrapper} ${
+                className={`${styles.eventWrapper} ${event.isLive ? styles.live : ''} ${
                   updatedEvents.includes(event.id) ? styles.flash : ''
                 }`}
               >
                 <div className={styles.eventHeader}>
-                  <div className={styles.headerItem}>
-                    <div className={styles.headerSubItem}>{event.sport.title}</div>
-                    {/*<div className={styles.headerSubItem}>{event.name}</div>*/}
+                  <div className={styles.headerLeft}>
+                    <div className={styles.sportTitle}>{event.sport.title}</div>
+                    <div className={styles.matchTitle}>{event.name}</div>
                   </div>
-                  <div className={styles.headerItem}>
-                    <div className={styles.headerSubItem}>
+                  <div className={styles.headerRight}>
+                    <div className={styles.timeInfo}>
                       <ElapsedTime live={live} startTime={event.startTime} />
                     </div>
+                    {live && (
+                      <div className={styles.liveIndicator}>LIVE</div>
+                    )}
                     {live && !event.sport.key.startsWith('tennis') && (
-                      <div className={styles.headerSubItem2}>{renderScore(event)}</div>
+                      <div className={styles.scoreInfo}>{renderScore(event)}</div>
                     )}
                   </div>
                 </div>
-                <div className={styles.oddsWrapper}>
+                <div className={styles.market}>
                   <Market event={event} market={selectedMarket} live={live} />
                 </div>
               </div>

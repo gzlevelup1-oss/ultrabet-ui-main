@@ -42,7 +42,7 @@ export function AddSlipOptionForm({ option, event, market }: Props) {
       <button
         onClick={handleClick}
         type={'submit'}
-        className={`${styles.addSlipOptionButton} ${styles.oddsValue}`}
+        className={styles.addSlipOptionButton}
       >
         {option?.odds}
       </button>

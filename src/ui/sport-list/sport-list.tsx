@@ -45,22 +45,42 @@ function SportListPlain({ group, sports, market }: SportListProps) {
 
         if (!liveEvents.length && !upcomingEvents.length)
           return (
-            <Card key={sport.id}>
-              <CardHeader title={sport.title} />
-              <CardContent className={styles.closedMarketContent}>
-                <p>Market closed.</p>
-              </CardContent>
-            </Card>
+            <div key={sport.id} className={styles.sportCard}>
+              <div className={styles.sportHeader}>
+                <div className={styles.sportIcon}>⚽</div>
+                <h2 className={styles.sportTitle}>{sport.title}</h2>
+                <div className={styles.eventCount}>0 events</div>
+              </div>
+              <div className={styles.closedMarketContent}>
+                <h3>Market Closed</h3>
+                <p>No events available at the moment. Check back later for upcoming matches.</p>
+                <button className={styles.notifyButton}>Notify Me</button>
+              </div>
+            </div>
           )
 
         return (
-          <Card key={sport.id}>
-            <CardHeader title={sport.title} />
-            <CardContent>
-              <LiveEventList events={liveEvents} marketName={market} />
-              <EventList events={upcomingEvents} marketName={market} />
-            </CardContent>
-          </Card>
+          <div key={sport.id} className={styles.sportCard}>
+            <div className={styles.sportHeader}>
+              <div className={styles.sportIcon}>⚽</div>
+              <h2 className={styles.sportTitle}>{sport.title}</h2>
+              <div className={styles.eventCount}>
+                {liveEvents.length + upcomingEvents.length} events
+              </div>
+            </div>
+            <div className={styles.sportContent}>
+              {liveEvents.length > 0 && (
+                <div className={`${styles.eventSection} ${styles.liveSection}`}>
+                  <LiveEventList events={liveEvents} marketName={market} />
+                </div>
+              )}
+              {upcomingEvents.length > 0 && (
+                <div className={styles.eventSection}>
+                  <EventList events={upcomingEvents} marketName={market} />
+                </div>
+              )}
+            </div>
+          </div>
         )
       })}
     </div>

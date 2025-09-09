@@ -26,6 +26,7 @@ export default function EventsLayout({ children }: { children: React.ReactNode }
       }}>
         <div style={{
           flex: '0 0 220px',
+          flex: '0 0 280px',
           minWidth: 0,
           maxHeight: '100vh',
           overflowY: 'auto',
