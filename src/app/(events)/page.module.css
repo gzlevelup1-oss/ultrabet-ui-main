@@ -1,8 +1,70 @@
-.eventsContainer {
-    padding: 2em;
-    background-color: var(--off-white);
+.mainLayout {
+  display: flex;
+  height: calc(100vh - 102px);
+  background: #f8f9fa;
+  overflow: hidden;
 }
 
-.eventsContainer h2 {
-    margin-top: 0;
+.leftSidebar {
+  flex: 0 0 200px;
+  background: #fff;
+  border-right: 1px solid #e5e7eb;
+  overflow-y: auto;
+}
+
+.mainContent {
+  flex: 1;
+  overflow-y: auto;
+  background: #f8f9fa;
+  padding: 0;
+}
+
+.rightSidebar {
+  flex: 0 0 320px;
+  background: #2d3748;
+  overflow-y: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .rightSidebar {
+    flex: 0 0 280px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .leftSidebar {
+    flex: 0 0 180px;
+  }
+  
+  .rightSidebar {
+    flex: 0 0 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainLayout {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .leftSidebar {
+    flex: none;
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .mainContent {
+    flex: none;
+    height: auto;
+    min-height: 400px;
+  }
+  
+  .rightSidebar {
+    flex: none;
+    height: auto;
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }

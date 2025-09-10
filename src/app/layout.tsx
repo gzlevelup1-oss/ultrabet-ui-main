@@ -2,14 +2,8 @@ import { Inter } from 'next/font/google'
 import './msw-init'
 import TopBar from '@/ui/top-bar/top-bar'
 import Footer from '@/components/footer/footer'
-// import { UserProvider } from '@auth0/nextjs-auth0/client'
 import React from 'react'
 import { Analytics } from '@vercel/analytics/react'
-import BetSlip from '@/ui/bet-slip/bet-slip'
-// import { getClient } from '@/lib/client'
-// import { MeDocument } from '@/gql/documents.generated'
-// import { User } from '@/gql/types.generated'
-// import { redirect } from 'next/navigation'
 import './global-layout.css'
 import './design-tokens.css'
 import './utilities.css'
@@ -17,7 +11,6 @@ import './utilities.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Use a mock user or null for bettingUser
   const me = null;
   return (
     <html lang="en">
@@ -45,9 +38,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className={inter.className}>
         <TopBar bettingUser={me} />
-        <div id="layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: 'linear-gradient(135deg, #fff 80%, #e0e0e0 100%)', paddingTop: '102px' }}>
-          <div style={{ flex: 1, paddingRight: 0 }}>{children}</div>
-          <BetSlip />
+        <div id="layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#f8f9fa' }}>
+          <div style={{ flex: 1 }}>{children}</div>
           <Footer />
           <Analytics />
         </div>

@@ -1,0 +1,306 @@
+.matchesContainer {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.searchSection {
+  background: #f8f9fa;
+  padding: 16px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.searchBar {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 50px 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  border-color: #007bff;
+}
+
+.searchButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #007bff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+}
+
+.matchesHeader {
+  background: #1e3a8a;
+  color: white;
+  padding: 16px 20px;
+}
+
+.matchesTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sportsNav {
+  background: #2563eb;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  border-bottom: 1px solid #1e40af;
+}
+
+.navArrow {
+  background: none;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 18px;
+  min-width: 48px;
+}
+
+.navArrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sportTab {
+  background: none;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.sportTab:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sportTab.active {
+  background: #fbbf24;
+  color: #1f2937;
+  border-bottom-color: #f59e0b;
+}
+
+.sportIcon {
+  font-size: 16px;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.matchesTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tableHeader {
+  background: #374151;
+  color: white;
+}
+
+.tableHeader th {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-right: 1px solid #4b5563;
+}
+
+.tableHeader th:last-child {
+  border-right: none;
+}
+
+.leagueRow {
+  background: #e5e7eb;
+}
+
+.leagueHeader {
+  padding: 8px 16px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.leagueFlag {
+  font-size: 14px;
+}
+
+.matchRow {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.matchRow:hover {
+  background: #f9fafb;
+}
+
+.matchRow:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.matchRow:nth-child(even):hover {
+  background: #f1f3f4;
+}
+
+.matchRow td {
+  padding: 8px;
+  text-align: center;
+  border-right: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.matchRow td:last-child {
+  border-right: none;
+}
+
+.gameId {
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 11px;
+}
+
+.matchTime {
+  font-weight: 500;
+  color: #374151;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.matchTeams {
+  text-align: left !important;
+  min-width: 200px;
+}
+
+.teamsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.homeTeam, .awayTeam {
+  font-size: 11px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.vs {
+  font-size: 10px;
+  color: #6b7280;
+  align-self: center;
+}
+
+.oddsButton {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 50px;
+}
+
+.oddsButton:hover {
+  background: #3b82f6;
+  color: white;
+  border-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.moreButton {
+  background: #f59e0b;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.moreButton:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .matchesTable {
+    font-size: 11px;
+  }
+  
+  .tableHeader th {
+    padding: 8px 4px;
+    font-size: 10px;
+  }
+  
+  .matchRow td {
+    padding: 6px 4px;
+  }
+  
+  .oddsButton {
+    padding: 4px 8px;
+    font-size: 10px;
+    min-width: 40px;
+  }
+  
+  .moreButton {
+    padding: 4px 6px;
+    font-size: 9px;
+    min-width: 50px;
+  }
+  
+  .matchTeams {
+    min-width: 150px;
+  }
+  
+  .homeTeam, .awayTeam {
+    font-size: 10px;
+  }
+}

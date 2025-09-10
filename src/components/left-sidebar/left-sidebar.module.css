@@ -1,0 +1,216 @@
+.sidebar {
+  width: 200px;
+  background: #fff;
+  border-right: 1px solid #e5e7eb;
+  height: calc(100vh - 102px);
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.dateSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dateButton {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateButton:hover {
+  background: #1e40af;
+}
+
+.dateButton.active {
+  background: #2563eb;
+}
+
+.filterSection {
+  padding: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.timeFilter {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 11px;
+  background: white;
+  color: #374151;
+}
+
+.datePicker {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 11px;
+  background: white;
+  color: #374151;
+}
+
+.section {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sectionHeader {
+  background: #1e3a8a;
+  color: white;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.sectionIcon {
+  font-size: 14px;
+}
+
+.sectionTitle {
+  flex: 1;
+}
+
+.clearButton {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px;
+}
+
+.leaguesList {
+  padding: 8px 0;
+}
+
+.leagueItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.leagueItem:hover {
+  background: #f3f4f6;
+}
+
+.checkbox {
+  width: 12px;
+  height: 12px;
+  accent-color: #2563eb;
+}
+
+.leagueFlag {
+  font-size: 12px;
+}
+
+.leagueName {
+  flex: 1;
+  font-size: 11px;
+  color: #374151;
+}
+
+.leagueCount {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.subsection {
+  background: #f9fafb;
+}
+
+.subsectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.subsectionHeader:hover {
+  background: #f3f4f6;
+}
+
+.expandIcon {
+  font-size: 10px;
+  color: #6b7280;
+  width: 12px;
+}
+
+.sportIcon {
+  font-size: 14px;
+}
+
+.sportName {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.countriesList {
+  padding-left: 20px;
+}
+
+.countryItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.countryItem:hover {
+  background: #f3f4f6;
+}
+
+.countryFlag {
+  font-size: 11px;
+}
+
+.countryName {
+  flex: 1;
+  font-size: 10px;
+  color: #374151;
+}
+
+.countryCount {
+  font-size: 9px;
+  color: #6b7280;
+}
+
+/* Scrollbar Styling */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
